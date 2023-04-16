@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "d3-dsv": "^3.0.1",
+    "docx": "^8.0.2",
+    "docxtemplater": "^3.36.1",
+    "open": "^9.1.0",
+    "pdf-creator-node": "^2.3.5",
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "@types/d3-dsv": "^3.0.1",
+    "@types/node": "^18.15.11",
+    "typescript": "^5.0.4"
+  }
+}
