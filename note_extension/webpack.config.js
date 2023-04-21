@@ -1,19 +1,26 @@
+//import path from 'path';
 const path = require('path');
+//import webpack from 'webpack';
+//import HtmlWebpackPlugin from 'html-webpack-plugin';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+//import CopyWebpackPlugin from 'copy-webpack-plugin';
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+//import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = {
+const config = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    background: './src/background.ts',
+    index: './src/index.tsx',
+    background: './src/background.tsx',
     content: './src/content.tsx',
     popup: './src/popup.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: '[name].bundle.js',
+    path: __dirname + '/public'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -21,15 +28,38 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          'css-loader'
+        ],
+        exclude: /\.module\.css$/
       },
-    ],
+      {
+        test: /\.ts(x)?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          }
+        ],
+        include: /\.module\.css$/
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -47,6 +77,7 @@ module.exports = {
   ],
 };
 
+module.exports = config;
 
 
 

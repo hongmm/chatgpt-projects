@@ -1,40 +1,21 @@
 {
-  "manifest_version": 2,
-  "name": "My Note-Taking Extension",
+  "name": "My Chrome Extension",
   "version": "1.0.0",
-  "description": "A note-taking tool for Chrome.",
-  "permissions": [
-    "activeTab",
-    "storage"
-  ],
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
+  "description": "A description of my extension.",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "contentScript.js"
-      ]
+      "matches": ["<all_urls>"],
+      "js": ["content.tsx"],
+      "run_at": "document_end"
     }
   ],
-  "browser_action": {
-    "default_popup": "popup.html",
-    "default_title": "My Note-Taking Extension"
+  "permissions": ["activeTab"],
+  "background": {
+    "scripts": ["background.tsx"]
   },
-  "icons": {
-    "16": "icon16.png",
-    "32": "icon32.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
-  },
-  "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'",
-  "web_accessible_resources": [
-    "popup.html"
-  ]
+  "web_accessible_resources": ["*.png", "*.gif", "*.jpg"]
 }

@@ -14,9 +14,38 @@
         // compilerOptions specified here will override those declared below,
         // but *only* in ts-node.  Useful if you want ts-node and tsc to use
         // different options with a single tsconfig.json.
+
+        "module": "esnext",
+        "target": "es6",
+        "lib": ["dom", "esnext"],
+        "jsx": "react",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "strict": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        }
       }
     },
     "compilerOptions": {
-      // typescript options here
-    }
+      "module": "esnext",
+      "target": "es6",
+      "lib": ["dom", "esnext"],
+      "jsx": "react",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "strict": true,
+      "sourceMap": true,
+      "outDir": "./dist",
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"]
+      }
+    },
+    "include": ["src/**/*", "dist/popup.js", "dist/content.js", "dist/background.js", "dist/index.js"],
+    "exclude": ["node_modules", "dist"]
   }
+  
