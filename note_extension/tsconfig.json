@@ -1,7 +1,5 @@
 {
     // This is an alias to @tsconfig/node16: https://github.com/tsconfig/bases
-    "extends": "ts-node/node16/tsconfig.json",
-  
     // Most ts-node options can be specified here using their programmatic names.
     "ts-node": {
       // It is faster to skip typechecking.
@@ -43,7 +41,8 @@
       "baseUrl": ".",
       "paths": {
         "@/*": ["src/*"]
-      }
+      },
+      "typeRoots": ["node_modules/@types", "src/@types"],
     },
     "include": ["src/**/*", "dist/popup.js", "dist/content.js", "dist/background.js", "dist/index.js"],
     "exclude": ["node_modules", "dist"]

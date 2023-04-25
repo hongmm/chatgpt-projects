@@ -1,25 +1,19 @@
-//import path from 'path';
 const path = require('path');
-//import webpack from 'webpack';
-//import HtmlWebpackPlugin from 'html-webpack-plugin';
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//import CopyWebpackPlugin from 'copy-webpack-plugin';
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-//import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    index: './src/index.tsx',
-    background: './src/background.tsx',
+    //index: './src/index.tsx',
+    //background: './src/background.tsx',
     content: './src/content.tsx',
     popup: './src/popup.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: __dirname + '/public'
   },
   resolve: {
@@ -62,18 +56,12 @@ const config = {
     ]
   },
   plugins: [
+    new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      filename: 'popup.html',
+      filename: 'index.html',
       chunks: ['popup'],
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: './public', to: '.' },
-        { from: './src/background.js', to: '.' },
-      ],
-    }),
-    new CleanWebpackPlugin(),
   ],
 };
 
