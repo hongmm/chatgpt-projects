@@ -1,19 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 
-interface PopupProps {}
+const Popup = () => {
+  const [notes, setNotes] = useState([]);
 
-interface PopupState {}
+  useEffect(() => {
+    chrome.storage.sync.get(['notes'], (result) => {
+      setNotes(result.notes);
+    });
+  }, []);
 
-class Popup extends React.Component<PopupProps, PopupState> {
-  constructor(props: PopupProps) {
-    super(props);
-    this.state = {};
-  }
+  return (
+    <div>
+      <h1>My Notes</h1>
+      <ul>
+        {notes.map((note, index) => (
+          <li key={index}>{note}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-  render() {
-    return <div>Hello, World!</div>;
-  }
-}
-
-ReactDOM.render(<Popup />, document.getElementById('root'));
+export default Popup;
