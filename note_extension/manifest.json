@@ -1,7 +1,7 @@
 {
   "name": "My Chrome Extension",
   "version": "1.0.0",
-  "description": "A description of my extension.",
+  "description": "A simple extension for taking notes.",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "popup.html"
@@ -9,13 +9,13 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.tsx"],
+      "js": ["content.js"],
       "run_at": "document_end"
     }
   ],
   "permissions": ["activeTab"],
   "background": {
-    "scripts": ["background.tsx"]
+    "scripts": ["background.js"]
   },
   "web_accessible_resources": ["*.png", "*.gif", "*.jpg"]
 }
