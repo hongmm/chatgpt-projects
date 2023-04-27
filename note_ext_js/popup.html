@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Note Taker</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./popup.css" />
+    </head>
+
+    <body>
+        <div id="main">
+            <h1>Note Taker</h1>
+            <ul id="notes-list"></ul>
+            <button id="create-note">Create Note</button>
+        </div>
+        <div id="editor">
+            <h2>Create/Edit Note</h2>
+            <input type="text", id="title", placeholder="Title">
+            <input type="text", id="url", placeholder="URL">
+            <textarea id="content"></textarea>
+            <button id="save-note">Save Note</button>
+        </div>
+    </body>
+    <script src="popup.js"></script>
+</html>
