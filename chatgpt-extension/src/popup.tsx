@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client';
 
-const apiKey = process.env.CHATGPT_API_KEY;
-const domNode = document.getElementById('popup-root');
-const root = createRoot(domNode as HTMLElement)
+const { Configuration, OpenAIApi } = require("openai");
+let reply = '';
+
+const configuration = new Configuration({
+  organization: "org-etpF9D68wpTpvj0wPkbtPmRK",
+  apiKey: process.env.OPENAI_API_KEY, // need to hardcode this for now
+});
+
+delete configuration.baseOptions.headers['User-Agent'];
+const openai = new OpenAIApi(configuration);
 
 const Popup = () => {
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
   const getResponse = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://api.chatgpt.com/ask', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          question: message,
-        })
+      const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: message,
+        temperature: 0,
+        max_tokens: 7,
       });
-      const data = await response.json();
-      console.log(data);
+      // const data = await response.json();
+      
+      reply = response.data.choices[0].text;
     } catch (error) {
       console.error(error);
     }
@@ -46,16 +47,9 @@ const Popup = () => {
       <h1>ChatGPT Chrome Extension</h1>
       <input type="text" value={message} onChange={handleMessageChange} onKeyDown={handleKeyPress} />
       {isLoading ? <p>Loading...</p> : null}
+      {reply}
     </div>
   );
 };
-
-
-// root.render(
-//   <React.StrictMode>
-//     <Popup />
-//   </React.StrictMode>
-// );
-// ReactDOM.render(<Popup />, document.getElementById('popup-root'));
 
 export default Popup;

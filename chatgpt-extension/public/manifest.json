@@ -7,6 +7,13 @@
     "default_popup": "index.html",
     "default_title": "ChatGPT Extension"
   },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "host_permissions": [
     "https://api.chatgpt.com/*"
   ]
