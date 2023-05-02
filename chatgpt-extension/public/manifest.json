@@ -1,0 +1,20 @@
+{
+  "name": "ChatGPT chrome extension",
+  "manifest_version": 3,
+  "version": "1.0",
+  "description": "A Chrome extension to interact with ChatGPT API",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "ChatGPT Extension"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://api.chatgpt.com/*"
+  ]
+}
