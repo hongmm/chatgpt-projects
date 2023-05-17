@@ -1,0 +1,26 @@
+# Virtual environment
+venv/
+
+# Compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# IDE and Editor files
+.vscode/
+.idea/
+.emacs.d/
+
+# Environment-specific files
+*.env
+
+# Dependency directories
+/node_modules/
+/bower_components/
+
+# Log files
+*.log
+
+# Other sensitive information
+config.ini
+secrets.py
