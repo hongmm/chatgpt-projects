@@ -57,3 +57,6 @@ if st.button("Tell me about it", type="primary"):
 
     # Running all the chains on the user's question and displaying the final answer
     st.success(overall_chain.run(user_question))
+
+    # to run the app, run the following command in the terminal
+    # streamlit run langchain-intro/index.py
