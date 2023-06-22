@@ -4,7 +4,8 @@
 1. Clone the repo
 2. Run `npm install`
 3. Create a `.env` file in the root directory and add the following:
-```OPENAI_API_KEY
+```
+OPENAI_API_KEY
 GOOGLE_APPLICATION_CREDENTIALS
 ```
 You will need to set up google application credentials and add the json file to this directory
