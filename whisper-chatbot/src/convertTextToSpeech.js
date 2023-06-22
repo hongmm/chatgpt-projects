@@ -6,15 +6,17 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import Audic from 'audic';
 
-const tts = async (text) => {
-    text = text.replace(/(\r\n|\n|\r)/gm, " ");
-    text = "Hello World"
+const timeout = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const tts = async (reply) => {
     const __dirname = dirname(fileURLToPath(import.meta.url));
     config({path: resolve(__dirname, '../.env')});
 
     const client = new textToSpeech.TextToSpeechClient();
     const request = {
-        input: {text: text},
+        input: {text: reply},
         // Select the language and SSML voice gender (optional)
         voice: {languageCode: 'en-US', ssmlGender: 'NEUTRAL'},
         // select the type of audio encoding
@@ -27,16 +29,18 @@ const tts = async (text) => {
     const writeFile = util.promisify(fs.writeFile);
     await writeFile('output.mp3', response.audioContent, 'binary');
     console.log('Audio content written to file: output.mp3');
+
     const audic = new Audic('output.mp3');
-    audic.volume = 0.5;
-    console.log(audic.src)
+    audic.volume = 0.75;
+
+    console.log('Playing audio...');
+    // Playback response for five seconds, can be modified
+    await timeout(5000);
     await audic.play();
-    
     audic.addEventListener('ended', () => {
         audic.destroy();
     });
-
+    console.log('Audio playback complete.');
 };
 
-tts("Hello World")
 export default tts;
