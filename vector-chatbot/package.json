@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "d3-dsv": "^2.0.0",
+    "dotenv": "^16.3.1",
+    "es6-interface": "^3.2.1",
+    "faiss-node": "^0.2.2",
+    "langchain": "^0.0.97",
+    "mammoth": "^1.6.0",
+    "pdf-parse": "^1.1.1",
+    "typescript": "^5.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.2"
+  }
+}
